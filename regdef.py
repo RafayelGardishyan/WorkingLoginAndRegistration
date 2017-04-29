@@ -20,12 +20,11 @@ def registration():
                 name = self.entry1.get()
                 surname = self.entry2.get()
                 password = self.entry4.get()
-                with open("data/" + email, "w") as out_registration:
+                with open("data/" + email, "w+") as out_registration:
                     char = "1"
                     for i in range(len(char)):
                         out_string = str(surname + " " + name + "\n" + email + "\n" + password)
                         out_registration.write(out_string)
-                        quit()
 
         def __init__(self, main):
             self.label = Label(main, text="E-mail", font="15", bd=x)
@@ -66,7 +65,7 @@ def login():
 
     class Form:
 
-        def tutuz(self, event):
+        def loginlogin(self, event):
 
             loginInp = self.entry.get()
             passInp = self.entry4.get()
@@ -75,7 +74,6 @@ def login():
                 if passInp in open('data/' + loginInp).read():
                     self.label3["text"] = "Successfully logged in"
                     self.label3["fg"] = "blue"
-                    quit()
                 else:
                     self.label3["text"] = "Error. Check your details."
             else:
@@ -98,7 +96,7 @@ def login():
             self.btn.grid(row=2, column=1)
             self.label3.grid(row=3, column=1)
 
-            self.btn.bind('<Button-1>', self.tutuz)
+            self.btn.bind('<Button-1>', self.loginlogin)
 
     login__form.title("Login")
     obj = Form(login__form)
