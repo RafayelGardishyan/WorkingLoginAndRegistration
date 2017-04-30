@@ -1,3 +1,0 @@
-Gardishyan Anahit
-anahitgardishyan@gmail.com
-anahitonjabarev

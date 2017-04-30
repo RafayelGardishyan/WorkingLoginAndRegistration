@@ -66,6 +66,7 @@ def registration():
             self.label3.grid(row=6, column=1)
 
             self.btn.bind("<Button-1>", self.submit)
+            registration_form.bind('<Return>', self.submit)
 
     registration_form.title("Register your account")
     obj = Form(registration_form)
@@ -113,6 +114,7 @@ def login():
             self.label3.grid(row=3, column=1)
 
             self.btn.bind('<Button-1>', self.loginlogin)
+            login__form.bind('<Return>', self.loginlogin)
 
     login__form.title("Login")
     login__form.iconbitmap("images/smile.ico")
