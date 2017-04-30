@@ -35,7 +35,7 @@ def registration():
                         for i in range(len(char)):
                             out_string = str(surname + " " + name + "\n" + email + "\n" + password)
                             out_registration.write(out_string)
-                    mailsender.send_email(email, name, surname, password)
+                    emailsender.send_email(email, name, surname, password)
                     messagebox.showinfo(title="Welcome",
                                         message="You are successfully registered. \nCheck your e-mail", )
                     quit()
