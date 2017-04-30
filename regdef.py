@@ -22,14 +22,18 @@ def registration():
             check1 = Path("data/" + email)
             if check1.is_file():
                 self.label3.configure(fg="red")
+                self.entry.configure(fg="red")
                 self.label3["text"] = "This email address is already registered"
             else:
                 if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+                    self.entry.configure(fg="red")
+                    self.label3["fg"] = "red"
                     self.label3["text"] = "Not valid email address!"
                 else:
                     name = self.entry1.get()
                     surname = self.entry2.get()
                     password = self.entry4.get()
+                    self.entry.configure(fg="blue")
                     with open("data/" + email, "w+") as out_registration:
                         char = "1"
                         for i in range(len(char)):
