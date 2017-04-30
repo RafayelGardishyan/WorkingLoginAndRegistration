@@ -5,6 +5,7 @@ import re
 from tkinter import *
 from pathlib import Path
 import emailsender
+from tkinter import messagebox
 
 def registration():
     registration_form = Tk()
@@ -18,18 +19,26 @@ def registration():
             global surname
             global password
             email = self.entry.get()
-            if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-                self.label3["text"] = "Not valid email address!"
+            check1 = Path("data/" + email)
+            if check1.is_file():
+                self.label3.configure(fg="red")
+                self.label3["text"] = "This email address is already registered"
             else:
-                name = self.entry1.get()
-                surname = self.entry2.get()
-                password = self.entry4.get()
-                with open("data/" + email, "w+") as out_registration:
-                    char = "1"
-                    for i in range(len(char)):
-                        out_string = str(surname + " " + name + "\n" + email + "\n" + password)
-                        out_registration.write(out_string)
-                emailsender.send_email(email, name, surname, password)
+                if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+                    self.label3["text"] = "Not valid email address!"
+                else:
+                    name = self.entry1.get()
+                    surname = self.entry2.get()
+                    password = self.entry4.get()
+                    with open("data/" + email, "w+") as out_registration:
+                        char = "1"
+                        for i in range(len(char)):
+                            out_string = str(surname + " " + name + "\n" + email + "\n" + password)
+                            out_registration.write(out_string)
+                    mailsender.send_email(email, name, surname, password)
+                    messagebox.showinfo(title="Welcome",
+                                        message="You are successfully registered. \nCheck your e-mail", )
+                    quit()
 
         def __init__(self, main):
             self.label = Label(main, text="E-mail", font="15", bd=x)
@@ -79,6 +88,8 @@ def login():
                 if passInp in open('data/' + loginInp).read():
                     self.label3["text"] = "Successfully logged in"
                     self.label3["fg"] = "blue"
+                    messagebox.showinfo(title="Welcome back", message="You are successfully logged in", )
+                    quit()
                 else:
                     self.label3["text"] = "Error. Check your details."
             else:

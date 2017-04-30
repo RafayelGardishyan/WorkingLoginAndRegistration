@@ -1,3 +1,0 @@
-Gardishyan Rafayel
-rgardishyan@gmail.com
-raforafo1124112e
