@@ -4,7 +4,7 @@ import time
 import re
 from tkinter import *
 from pathlib import Path
-
+import emailsender
 
 def registration():
     registration_form = Tk()
@@ -13,6 +13,10 @@ def registration():
     class Form:
 
         def submit(self, event):
+            global email
+            global name
+            global surname
+            global password
             email = self.entry.get()
             if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
                 self.label3["text"] = "Not valid email address!"
@@ -25,6 +29,7 @@ def registration():
                     for i in range(len(char)):
                         out_string = str(surname + " " + name + "\n" + email + "\n" + password)
                         out_registration.write(out_string)
+                emailsender.send_email(email, name, surname, password)
 
         def __init__(self, main):
             self.label = Label(main, text="E-mail", font="15", bd=x)
