@@ -69,7 +69,7 @@ def registration():
 
     registration_form.title("Register your account")
     obj = Form(registration_form)
-
+    registration_form.iconbitmap("images/smile.ico")
     registration_form.mainloop()
 
 
@@ -115,4 +115,5 @@ def login():
             self.btn.bind('<Button-1>', self.loginlogin)
 
     login__form.title("Login")
+    login__form.iconbitmap("images/smile.ico")
     obj = Form(login__form)

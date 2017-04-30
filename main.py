@@ -25,4 +25,5 @@ class mainwindow:
 main_window = Tk()
 main_window.title("Welcome!")
 window = mainwindow()
+main_window.iconbitmap("images/smile.ico")
 main_window.mainloop()
