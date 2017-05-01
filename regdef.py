@@ -90,15 +90,19 @@ def login():
             passInp = self.entry4.get()
             check1 = Path("data/" + loginInp)
             if check1.is_file():
+                self.entry.configure(fg="blue")
                 if passInp in open('data/' + loginInp).read():
+                    self.entry4.configure(fg="blue")
                     self.label3["text"] = "Successfully logged in"
                     self.label3["fg"] = "blue"
                     messagebox.showinfo(title="Welcome back", message="You are successfully logged in", )
                     quit()
                 else:
-                    self.label3["text"] = "Error. Check your details."
+                    self.label3["text"] = "Error. Check your password."
+                    self.entry4.configure(fg="red")
             else:
                 self.label3["text"] = "Error. Check your details."
+                self.entry.configure(fg="red")
 
         def __init__(self, main):
             self.label = Label(main, text="E-mail", font="15", bd=x)
