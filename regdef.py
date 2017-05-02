@@ -17,6 +17,7 @@ def registration():
             name = self.entry1.get()
             surname = self.entry2.get()
             password = self.entry4.get()
+            confirm = self.entry5.get()
             email = self.entry.get()
             check1 = Path("data/" + email)
             if check1.is_file():
@@ -47,16 +48,22 @@ def registration():
                                 self.label3["fg"] = "red"
                                 self.label3["text"] = "The password must contain at least 6 letters"
                             else:
-                                self.entry4.configure(fg="blue")
-                                with open("data/" + email, "w+") as out_registration:
-                                    char = "1"
-                                    for i in range(len(char)):
-                                        out_string = str(name + " " + surname + "\n" + email + "\n" + password)
-                                        out_registration.write(out_string)
-                                emailsender.send_email(email, name, surname, password)
-                                messagebox.showinfo(title="Welcome",
-                                                    message="You are successfully registered. \nCheck your e-mail", )
-                                quit()
+                                if password == confirm:
+                                    self.entry4.configure(fg="blue")
+                                    with open("data/" + email, "w+") as out_registration:
+                                        char = "1"
+                                        for i in range(len(char)):
+                                            out_string = str(name + " " + surname + "\n" + email + "\n" + password)
+                                            out_registration.write(out_string)
+                                    emailsender.send_email(email, name, surname, password)
+                                    messagebox.showinfo(title="Welcome",
+                                                        message="You are successfully registered. \nCheck your e-mail", )
+                                    quit()
+                                else:
+                                    self.entry4.configure(fg="red")
+                                    self.entry5.configure(fg="red")
+                                    self.label3["fg"] = "red"
+                                    self.label3["text"] = "Passwords do not match"
 
         def __init__(self, main):
             self.label = Label(main, text="E-mail", font="15", bd=x)
@@ -67,10 +74,13 @@ def registration():
             self.entry2 = Entry(main, width="30", bd=x, font="15", )
             self.label4 = Label(main, text="Password", font="15", bd=x)
             self.entry4 = Entry(main, width="30", bd=x, font="15", )
+            self.label5 = Label(main, text="Confirm password", font="15", bd=x)
+            self.entry5 = Entry(main, width="30", bd=x, font="15", )
             self.btn = Button(main, fg="blue", width="20", font="15", height="1", text="Submit", bd=x)
             self.label3 = Label(main, text=" ", fg='red', font="15", bd=x)
 
             self.entry4.config(show="*")
+            self.entry5.config(show="*")
 
             self.label.grid(row=0, column=0)
             self.entry.grid(row=0, column=1)
@@ -80,6 +90,8 @@ def registration():
             self.entry2.grid(row=2, column=1)
             self.label4.grid(row=3, column=0)
             self.entry4.grid(row=3, column=1)
+            self.label5.grid(row=3, column=0)
+            self.entry5.grid(row=3, column=1)
             self.btn.grid(row=5, column=1)
             self.label3.grid(row=6, column=1)
 
