@@ -90,8 +90,8 @@ def registration():
             self.entry2.grid(row=2, column=1)
             self.label4.grid(row=3, column=0)
             self.entry4.grid(row=3, column=1)
-            self.label5.grid(row=3, column=0)
-            self.entry5.grid(row=3, column=1)
+            self.label5.grid(row=4, column=0)
+            self.entry5.grid(row=4, column=1)
             self.btn.grid(row=5, column=1)
             self.label3.grid(row=6, column=1)
 
